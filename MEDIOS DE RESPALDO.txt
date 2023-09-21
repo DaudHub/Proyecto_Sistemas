@@ -1,0 +1,93 @@
+Definir medios de respaldo a largo plazo y alta disponibilidad de los datos.  
+
+En joule definimos como medio de respaldo el servidor con las siguientes caracteristicas:
+
+ • Procesador
+Core i3 10100f
+El poder de computo que tiene este procesador es mas que suficiente para correr la base de datos y el sistema de APIs. Teniendo en cuenta el tráfico que va a generar el uso del software, se estima que este procesador puede cumplir con la carga que se le va a exigir.
+
+    • Placa madre
+Gigabyte H510M H V2
+Esta placa madre se eligió ya que la tarjeta de red integrada cumple con las especificaciones necesarias para satisfacer el tráfico (1Gb/s). A demás cuenta con un puerto M.2 el cual será utilizado para el almacenamiento.
+
+    • Memoria
+Hikvision 8GB DDR4 3200MHz (x2)
+Se estima que 16GB de RAM son suficientes en ambos servidores. Como se van a utilizar dos RAM idénticas, entra en juego el dual channel, lo cual ayudará muchísimo al procesador.
+
+    • Almacenamiento
+HS-WAVE SSD PCIe NVMe 
+Como se mencionó anteriormente, se utilizará una unidad de almacenamiento que sea M.2. Esto con fines de tener velocidades de lectura y escritura muy altas y que el sistema no presente inconvenientes. Creemos que 1TB de almacenamiento es suficiente para el servidor de la base de datos. Para el caso del servidor de las APIs, se utilizará la misma unidad con la excepción de que serán solamente 256GB, ya que como este servidor no va a almacenar datos, seria un desperdicio de dinero disponer de 1TB almacenamiento. 
+
+    • Fuente de alimentación
+Gigabyte P450B 80 Plus Bronze
+La computadora no requiere gran cantidad de potencia para funcionar, por eso una de 450W es suficiente para suministrar energía a toda la computadora. Se decide utilizar una fuente certificada porque son extremadamente más seguras que las genérica, ya que estos equipos no pueden presentar problemas, porque se estaría cayendo todo sistema. Por eso es mejor implementar una fuente de alimentación que esté certificada.
+
+    • Gabinete
+Deepcool Matrexx 30
+No es necesario un gabinete caro ni equipado. Este gabinete cumple con las medidas necesarias para poder ensamblar todo los componentes.
+
+
+Componente               Vínculo externo                                                                                    Coste  (U$D)
+Placa mare               https://thotcomputacion.com.uy/producto/mother-gigabyte-h510m-h-v2/                                  100
+Procesador               https://thotcomputacion.com.uy/producto/intel-core-i3-10100f-3-60ghz-6mb-lga1200-10th-gen-2/         105
+Memoria                  https://thotcomputacion.com.uy/producto/memoria-hikvision-8gb-ddr4-3200mhz/                          20 (dos unidades)
+Almacenamiento           https://thotcomputacion.com.uy/producto/hiksemi-hs-wave-ssd-pcie-nvme-1tb-gen-3-0/                   50
+Fuente de alimentación   https://thotcomputacion.com.uy/producto/fuente-gigabyte-p450b-80-plus-bronze/                        55
+Gabinete                 https://thotcomputacion.com.uy/producto/gabinete-deepcool-matrexx-30-incluye-cooler/                 40
+
+
+
+
+
+Que se respalda y cada cuanto:
+
+
+Items a respaldar del servidor de la base de datos:
+
+- BASE DE DATOS (2 MIN)
+- FIREWALL (MENSUALMENTE)
+- CONFIGURACIÓN SSH (archivo: sshd_config) (MENSUALMENTE)
+- ARCHIVO CRONTAB (MENSUALMENTE)
+- LOGS DE USUARIOS (DIARIAMENTE)
+
+Items a respaldar del servidor de las apis:
+
+- LAS APIS (MENSUALMENTE)
+- CONFIGURACIÓN SSH (MENSUALMENTE)
+- FIREWALL (MENSUALMENTE)
+- CONFIGURACION DE ANSIBLE (MENSUALMENTE)
+- ARCHIVO CRONTAB (MENSUALMENTE)
+- LOGS DE USUARIOS (DIARIAMENTE)
+
+
+Como vamos a respaldar: (Rsync - Empaquetado y compresion)
+
+En JOULE vamos a respaldar toda la informacion necesaria a traves de la utilizacion de Rsync. 
+
+El comando rsync de Linux transfiere y sincroniza archivos o directorios de manera eficiente entre una máquina local, un servidor remoto o cualquiera de estos. Sincronizar carpetas o copiar archivos manualmente puede llevar mucho tiempo. La utilidad rsync de Linux puede hacer la mayor parte del trabajo por nosotros al mismo tiempo que agrega excelentes funciones para ahorrar tiempo. Incluso si perdemos la conexión durante la transferencia, esta herramienta continuará exactamente donde se quedó, una vez que se restablezca la conexión.
+
+Empaquetado y compresion: 
+
+En conjunto con el uso de Rsync utilizaremos el empaquetado y la compresion para realizar la transeferencia de los datos a respaldar.
+Empaquetar refiere a agrupar en un solo fichero varios ficheros de cualquier tipo. En linux contamos con el comando tar que nos permite realizar el proceso de empaquetación de manera muy sencilla, su sintaxis es la siguiente:
+tar [opc] nombre_fichero.tar fichero(s)_origen
+
+nombre_fichero.tar es el nombre del fichero resultante al aplicar el empaquetado, y fichero(s)_origen es la lista de ficheros que serán incluidos en la empaquetación.
+
+Compresión
+La compresión de datos es la reducción del volumen de datos tratables para representar una determinada información empleando una menor cantidad de espacio . Al acto de compresión de datos se denomina «compresión», y al contrario «descompresión». Tenemos varios comandos que nos permiten realizar estas acciones.
+
+Compresión - gzip - gunzip
+
+Los comandos gzip y gunzip permiten comprimir y descomprimir ficheros respectivamente, su sintaxis básica es:
+• gzip [archivo_a_comprimir]
+• gunzip [archivo_a_descomprimir]
+
+El comando tar también tiene la opción de comprimir en el mismo momento del empaquetado. Simplemente agregando la opción z tanto en el empaquetado como en el desempaquetado permite comprimir y descomprimir respectivamente.
+
+• tar -czf archivo.tgz {archivos}
+• tar -xzf archivo.tzg
+
+
+
+

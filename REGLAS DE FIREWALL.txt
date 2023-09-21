@@ -1,0 +1,52 @@
+Sistemas operativos
+Firewall
+
+
+Servidor de base de datos
+
+1) Administrador de redes - (SOLO PERMITIRLE SSH)
+* iptables -t filter -A INPUT -s 192.168.1.2 -p tcp --dport 22 -j ACCEPT
+
+2) Back-officer - (SOLO PERMITIRLE MYSQL)
+* iptables -t filter -A INPUT -s 192.168.1.6 -p tcp --dport 3306 -j ACCEPT
+
+3) Servidor de APIs - (SOLO MYSQL)
+* iptables -t filter -A INPUT -s 192.168.1.4 -p tcp --dport 3306 -j ACCEPT
+
+4) Servidor de Respaldo y Backups - (SOLO PERMITE RECIBIR LOS BACKUPS)
+* iptables -t filter -A INPUT -s 192.168.1.5 -p tcp --dport 873 -j ACCEPT
+
+Política:
+* iptables -t filter -P INPUT DROP 
+
+
+Servidor de APIs
+
+1) Administrador de redes - (SOLO PERMITIRLE SSH)
+* iptables -t filter -A INPUT -s 192.168.1.2 -p tcp --dport 22 -j ACCEPT
+
+2) Resto del mundo - (SOLO HTTP)
+* iptables -t filter -A INPUT -p tcp --dport 81 -j ACCEPT
+* iptables -t filter -A INPUT -p tcp --dport 82 -j ACCEPT
+* iptables -t filter -A INPUT -p tcp --dport 83 -j ACCEPT
+
+3) Servidor de Respaldo y Backups - (SOLO PERMITE RECIBIR LOS BACKUPS)
+* iptables -t filter -A INPUT -s 192.168.1.5 -p tcp --dport 873 -j ACCEPT
+
+Política:
+* iptables -t filter -P INPUT DROP 
+
+
+Servidor de Respaldo y Backups
+
+1) Administrador de redes - (SOLO PERMITIRLE SSH)
+* iptables -t filter -A INPUT -s 192.168.1.2 -p tcp --dport 22 -j ACCEPT
+
+2) Servidor APIs - (SOLO PERMITIRLE RECIBIR LOS BACKUPS)
+* iptables -t filter -A INPUT -s 192.168.1.4 -p tcp --dport 873 -j ACCEPT
+
+3) Servidor Base de datos - (SOLO PERMITIRLE RECIBIR LOS BACKUPS)
+* iptables -t filter -A INPUT -s 192.168.1.3 -p tcp --dport 873 -j ACCEPT
+
+Política
+* iptables -t filter -P INPUT DROP 

@@ -1,0 +1,2 @@
+Nombre           Puerto   De               Último
+Falonso          tty1                      jue sep 21 22:11:22 +0200 2023
