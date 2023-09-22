@@ -9,13 +9,17 @@ while [ $op -ne $cero ]
 do
 
 clear
-echo " 0 -- Salir "
-echo " 1 -- Ver logs exitosos "
-echo " 2 -- Ver logs exitosos remotos "
-echo " 3 -- Ver detalles de log de un usuario "
-echo " 4 -- Ver logs fallidos "
-echo " 5 -- Ver usuarios conectados "
-echo " 6 -- Ver por usuario conectado "
+echo "--------------------------------------------------------"
+echo "|                 LOGS DEL SISTEMA                     |"
+echo "|                                                      |" 
+echo "|       0 -- Salir                                     |"
+echo "|       1 -- Ver logs exitosos                         |"
+echo "|       2 -- Ver logs exitosos remotos                 |"
+echo "|       3 -- Ver detalles de log de un usuario         |"
+echo "|       4 -- Ver logs fallidos                         |"
+echo "|       5 -- Ver usuarios conectados                   |"
+echo "|       6 -- Ver por usuario conectado                 |"
+echo "--------------------------------------------------------"
 echo " Ingrese la opcion "
 read op
 
@@ -136,14 +140,17 @@ case "$op" in
        ;;
 
     *)
-        echo "Opcion no determinada"
-	echo " 0 -- Salir "
-        echo " 1 -- Ver logs exitosos "
-        echo " 2 -- Ver logs exitosos remotos "
-        echo " 3 -- Ver detalles de log de un usuario "
-        echo " 4 -- Ver logs fallidos "
-        echo " 5 -- Ver usuarios conectados "
-        echo " 6 -- Ver por usuario conectado "
+echo "--------------------------------------------------------"
+echo "|                 LOGS DEL SISTEMA                     |"
+echo "|                                                      |" 
+echo "|       0 -- Salir                                     |"
+echo "|       1 -- Ver logs exitosos                         |"
+echo "|       2 -- Ver logs exitosos remotos                 |"
+echo "|       3 -- Ver detalles de log de un usuario         |"
+echo "|       4 -- Ver logs fallidos                         |"
+echo "|       5 -- Ver usuarios conectados                   |"
+echo "|       6 -- Ver por usuario conectado                 |"
+echo "--------------------------------------------------------"
         echo " Ingrese la opcion "
         read op
 
