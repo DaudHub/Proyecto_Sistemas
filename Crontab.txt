@@ -13,4 +13,4 @@ MAILTO=root
 # |  |  |  |  |
 # *  *  *  *  * user-name  command to be executed
 
-  2  *  *  *  * $USER /home/Falonso/RespaldosAuto.sh
+  2  *  *  *  * $USER /home/$USER/RespaldosAuto.sh
