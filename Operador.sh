@@ -16,6 +16,8 @@ echo "|     4 -- Instalar MYSQL                              |"
 echo "|     5 -- Respaldos automaticos                       |"
 echo "|     6 -- Respaldos manuales                          |"
 echo "|     7 -- Reglas de Firewall                          |"
+echo "|     8 -- Instalar .NET                               |"
+echo "|     9 -- Instalar GIT                                |"
 echo "--------------------------------------------------------"
 echo ""
 echo " Ingrese la opcion "
@@ -54,6 +56,14 @@ case "$op" in
         sh ReglasFirewall.sh
     ;;
 
+    "8")
+        sh Instalar.NET.sh
+    ;;
+
+    "9")
+        sh InstalarGit.sh
+    ;;
+
     "0")
         exit
     ;;
@@ -62,7 +72,7 @@ case "$op" in
         echo "Opcion no determinada"
 
 echo "--------------------------------------------------------"
-echo "|              RESPALDOS MANUALES                      |"
+echo "|                   OPERADOR                           |"
 echo "|                                                      |" 
 echo "|     0 -- Salir                                       |"
 echo "|     1 -- Manejo de usuarios                          |"
@@ -72,7 +82,10 @@ echo "|     4 -- Instalar MYSQL                              |"
 echo "|     5 -- Respaldos automaticos                       |"
 echo "|     6 -- Respaldos manuales                          |"
 echo "|     7 -- Reglas de Firewall                          |"
+echo "|     8 -- Instalar .NET                               |"
+echo "|     9 -- Instalar GIT                                |"
 echo "--------------------------------------------------------"
+echo ""
 
         echo -n " Ingrese la opcion: "
         read op
